@@ -102,7 +102,7 @@ public:
     void authenticate_user_obj(Context *c, const QString &realm) {
         if (Authentication::user(c).isNull()
                 && Authentication::authenticate(c, c->request()->queryParameters(), realm)
-                && !Authentication::user(c).id().isEmpty()) {
+                && !Authentication::user(c).id().isNull()) {
             c->response()->setBody(QStringLiteral("ok"));
         } else {
             c->response()->setBody(QStringLiteral("fail"));
