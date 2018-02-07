@@ -26,10 +26,9 @@ AuthenticationUser::AuthenticationUser()
 
 }
 
-AuthenticationUser::AuthenticationUser(const QString &id) :
-    m_id(id)
+AuthenticationUser::AuthenticationUser(const QString &id)
 {
-
+    setId(id);
 }
 
 AuthenticationUser::~AuthenticationUser()
@@ -38,27 +37,27 @@ AuthenticationUser::~AuthenticationUser()
 
 QString AuthenticationUser::id() const
 {
-    return m_id;
+    return value(QStringLiteral("id")).toString();
 }
 
 void AuthenticationUser::setId(const QString &id)
 {
-    m_id = id;
+    insert(QStringLiteral("id"), id);
 }
 
 bool AuthenticationUser::isNull() const
 {
-    return m_id.isEmpty();
+    return id().isEmpty();
 }
 
-AuthenticationRealm *AuthenticationUser::authRealm()
+QString AuthenticationUser::authRealm()
 {
-    return m_realm;
+    return value(QStringLiteral("authRealm")).toString();
 }
 
-void AuthenticationUser::setAuthRealm(AuthenticationRealm *authRealm)
+void AuthenticationUser::setAuthRealm(const QString &authRealm)
 {
-    m_realm = authRealm;
+    insert(QStringLiteral("authRealm"), authRealm);
 }
 
 QDataStream &operator<<(QDataStream &out, const AuthenticationUser &user)

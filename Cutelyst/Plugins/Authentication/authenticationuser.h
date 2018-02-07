@@ -61,16 +61,12 @@ public:
     /*!
      * Returns the authentication realm from which this user was retrieved
      */
-    AuthenticationRealm *authRealm();
+    QString authRealm();
 
     /*!
      * Sets the authentication realm from which this user was retrieved
      */
-    void setAuthRealm(AuthenticationRealm *authRealm);
-
-private:
-    QString m_id;
-    AuthenticationRealm *m_realm;
+    void setAuthRealm(const QString &authRealm);
 };
 
 }
